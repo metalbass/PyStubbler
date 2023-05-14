@@ -83,19 +83,8 @@ namespace PyStubbler.Tests
             }
         }
 
-        public string GetApprovalFilename(string basename)
-        {
-            return expectedFilePath;
-        }
-
-        public string GetReceivedFilename(string basename)
-        {
-            return actualFilePath;
-        }
-
-        public string WriteReceivedFile(string received)
-        {
-            return actualFilePath;
-        }
+        public string GetApprovalFilename(string basename) => expectedFilePath;
+        public string GetReceivedFilename(string basename) => actualFilePath;
+        public string WriteReceivedFile(string received) => actualFilePath;
     }
 }
