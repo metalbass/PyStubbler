@@ -31,6 +31,11 @@ namespace PyStubbler.Tests
         {
             GenerateStubs(testDataDirectory);
 
+            if (ListStubFilePaths(testDataDirectory).Count() > 1)
+            {
+                Assert.Fail("We are not yet prepared to handle multiple files.");
+            }
+
             string relativePath = Path.Join("ExampleCSharpLibrary", "ExampleCSharpLibrary", "__init__.pyi");
 
             string expectedFilePath = Path.Join(goldenMasterDirectory, relativePath);
@@ -44,8 +49,7 @@ namespace PyStubbler.Tests
         {
             GenerateStubs(testDataDirectory);
 
-            Approvals.VerifyAll("Generated stub files",
-                Directory.EnumerateFiles(testDataDirectory, "*.pyi", SearchOption.AllDirectories),
+            Approvals.VerifyAll("Generated stub files", ListStubFilePaths(testDataDirectory),
                 formatter: absolutePath => Path.GetRelativePath(testDataDirectory, absolutePath));
         }
 
@@ -55,6 +59,11 @@ namespace PyStubbler.Tests
             string destPath = Path.Join(destinationFolder, "ExampleCSharpLibrary");
 
             StubBuilder.BuildAssemblyStubs(targetAssemblyPath, destPath);
+        }
+
+        private static IEnumerable<string> ListStubFilePaths(string directory)
+        {
+            return Directory.EnumerateFiles(directory, "*.pyi", SearchOption.AllDirectories);
         }
 
         /// <remarks>
