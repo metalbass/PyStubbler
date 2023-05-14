@@ -12,8 +12,13 @@ namespace PyStubbler.Tests
         /// <summary> Regenerates the golden master </summary>
         private static void Main(string[] args)
         {
+            GenerateStubs(Path.Join(GetProjectDirectory(), "GoldenMaster"));
+        }
+
+        private static void GenerateStubs(string destinationFolder)
+        {
             string targetAssemblyPath = Path.Join(Directory.GetCurrentDirectory(), "ExampleCSharpLibrary.dll");
-            string destPath = Path.Join(GetProjectDirectory(), "GoldenMaster", "ExampleCSharpLibrary");
+            string destPath = Path.Join(destinationFolder, "ExampleCSharpLibrary");
 
             StubBuilder.BuildAssemblyStubs(targetAssemblyPath, destPath);
         }
