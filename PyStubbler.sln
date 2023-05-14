@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PyStubbler", "PyStubbler\Py
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1441E43E-7CBD-4DC8-9BB4-D4D08742D2F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCSharpLibrary", "ExampleCSharpLibrary\ExampleCSharpLibrary.csproj", "{5F531B85-5B15-401E-974E-A2AB50987B15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCSharpLibrary", "Tests\ExampleCSharpLibrary\ExampleCSharpLibrary.csproj", "{5F531B85-5B15-401E-974E-A2AB50987B15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PyStubbler.Tests", "PyStubbler.Tests\PyStubbler.Tests.csproj", "{548DEF93-40B8-4D84-AECE-EA5CA587231E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PyStubbler.Tests", "Tests\PyStubbler.Tests\PyStubbler.Tests.csproj", "{548DEF93-40B8-4D84-AECE-EA5CA587231E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
