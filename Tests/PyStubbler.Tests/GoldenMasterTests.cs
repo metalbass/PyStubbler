@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 
 namespace PyStubbler.Tests
 {
-    public class UnitTest1
+    public class GoldenMasterTests
     {
         [Fact]
         public void Test1()
