@@ -11,20 +11,25 @@ namespace PyStubbler.Tests
     /// </summary>
     public class GoldenMasterTests
     {
-        private static string goldenMasterDirectory = Path.Join(GetProjectDirectory(), "GoldenMaster");
+        private readonly string goldenMasterDirectory;
+        private readonly string testDataDirectory;
+
+        public GoldenMasterTests()
+        {
+            goldenMasterDirectory = Path.Join(GetProjectDirectory(), "GoldenMaster");
+            testDataDirectory = Path.Join(Directory.GetCurrentDirectory(), "TestData");
+        }
 
         [Fact]
         [UseReporter(typeof(VisualStudioReporter), typeof(XUnit2Reporter))]
         public void CompareAgainstGoldenMaster()
         {
-            string testDataFolder = Path.Join(Directory.GetCurrentDirectory(), "TestData");
+            GenerateStubs(testDataDirectory);
 
-            GenerateStubs(testDataFolder);
-            
             string relativePath = Path.Join("ExampleCSharpLibrary", "ExampleCSharpLibrary", "__init__.pyi");
 
             string expectedFilePath = Path.Join(goldenMasterDirectory, relativePath);
-            string actualFilePath = Path.Join(testDataFolder, relativePath);
+            string actualFilePath = Path.Join(testDataDirectory, relativePath);
 
             Approvals.Verify(new FileApprovalWriter(expectedFilePath, actualFilePath));
         }
