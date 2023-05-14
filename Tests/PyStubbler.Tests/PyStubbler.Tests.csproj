@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\PyStubbler\PyStubbler.csproj" />
+    <ProjectReference Include="..\ExampleCSharpLibrary\ExampleCSharpLibrary.csproj" />
   </ItemGroup>
 
 </Project>
