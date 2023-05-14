@@ -29,12 +29,6 @@ namespace PyStubbler.Tests
             Approvals.Verify(new FileApprovalWriter(expectedFilePath, actualFilePath));
         }
 
-        /// <summary> Regenerates the golden master </summary>
-        private static void Main(string[] args)
-        {
-            GenerateStubs(goldenMasterDirectory);
-        }
-
         private static void GenerateStubs(string destinationFolder)
         {
             string targetAssemblyPath = Path.Join(Directory.GetCurrentDirectory(), "ExampleCSharpLibrary.dll");

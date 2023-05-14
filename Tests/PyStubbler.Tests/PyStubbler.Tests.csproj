@@ -7,7 +7,6 @@
 	<WarningsAsErrors>Nullable</WarningsAsErrors>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-	<GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
 
