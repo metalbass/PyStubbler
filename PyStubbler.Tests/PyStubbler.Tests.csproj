@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PyStubbler\PyStubbler.csproj" />
+  </ItemGroup>
+
 </Project>
