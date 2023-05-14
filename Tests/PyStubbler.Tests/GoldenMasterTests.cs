@@ -1,3 +1,7 @@
+using ApprovalTests;
+using ApprovalTests.Reporters;
+using ApprovalTests.Reporters.TestFrameworks;
+using ApprovalTests.Core;
 using System.Runtime.CompilerServices;
 
 namespace PyStubbler.Tests
@@ -10,19 +14,19 @@ namespace PyStubbler.Tests
         private static string goldenMasterDirectory = Path.Join(GetProjectDirectory(), "GoldenMaster");
 
         [Fact]
+        [UseReporter(typeof(VisualStudioReporter), typeof(XUnit2Reporter))]
         public void CompareAgainstGoldenMaster()
         {
             string testDataFolder = Path.Join(Directory.GetCurrentDirectory(), "TestData");
 
             GenerateStubs(testDataFolder);
-
-            // TODO: since this only works with one file, replace with texttest?
+            
             string relativePath = Path.Join("ExampleCSharpLibrary", "ExampleCSharpLibrary", "__init__.pyi");
 
-            string expected = File.ReadAllText(Path.Join(goldenMasterDirectory, relativePath));
-            string actual = File.ReadAllText(Path.Join(testDataFolder, relativePath));
+            string expectedFilePath = Path.Join(goldenMasterDirectory, relativePath);
+            string actualFilePath = Path.Join(testDataFolder, relativePath);
 
-            Assert.Equal(expected, actual);
+            Approvals.Verify(new FileApprovalWriter(expectedFilePath, actualFilePath));
         }
 
         /// <summary> Regenerates the golden master </summary>
@@ -46,6 +50,38 @@ namespace PyStubbler.Tests
         private static string GetProjectDirectory([CallerFilePath] string callerFilePath = "")
         {
             return Path.GetDirectoryName(callerFilePath)!;
+        }
+    }
+
+    public class FileApprovalWriter : IApprovalWriter
+    {
+        private readonly string actualFilePath;
+        private readonly string expectedFilePath;
+
+        public FileApprovalWriter(string expectedFilePath, string actualFilePath)
+        {
+            this.actualFilePath = actualFilePath;
+            this.expectedFilePath = expectedFilePath;
+
+            if (!File.Exists(actualFilePath))
+            {
+                throw new("Existing File is required: '" + actualFilePath + "'");
+            }
+        }
+
+        public string GetApprovalFilename(string basename)
+        {
+            return expectedFilePath;
+        }
+
+        public string GetReceivedFilename(string basename)
+        {
+            return actualFilePath;
+        }
+
+        public string WriteReceivedFile(string received)
+        {
+            return actualFilePath;
         }
     }
 }
