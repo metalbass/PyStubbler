@@ -9,6 +9,7 @@ namespace PyStubbler.Tests
     /// <summary>
     /// https://blog.thecodewhisperer.com/permalink/surviving-legacy-code-with-golden-master-and-sampling
     /// </summary>
+    [UseReporter(typeof(VisualStudioReporter), typeof(XUnit2Reporter))]
     public class GoldenMasterTests
     {
         private readonly string goldenMasterDirectory;
@@ -36,6 +37,16 @@ namespace PyStubbler.Tests
             string actualFilePath = Path.Join(testDataDirectory, relativePath);
 
             Approvals.Verify(new FileApprovalWriter(expectedFilePath, actualFilePath));
+        }
+
+        [Fact]
+        public void GeneratedStubFiles()
+        {
+            GenerateStubs(testDataDirectory);
+
+            Approvals.VerifyAll("Generated stub files",
+                Directory.EnumerateFiles(testDataDirectory, "*.pyi", SearchOption.AllDirectories),
+                formatter: absolutePath => Path.GetRelativePath(testDataDirectory, absolutePath));
         }
 
         private static void GenerateStubs(string destinationFolder)
