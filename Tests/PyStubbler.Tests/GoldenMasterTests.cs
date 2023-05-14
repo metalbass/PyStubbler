@@ -18,10 +18,14 @@ namespace PyStubbler.Tests
         {
             goldenMasterDirectory = Path.Join(GetProjectDirectory(), "GoldenMaster");
             testDataDirectory = Path.Join(Directory.GetCurrentDirectory(), "TestData");
+
+            if (Directory.Exists(testDataDirectory))
+            {
+                Directory.Delete(testDataDirectory, recursive: true);
+            }
         }
 
         [Fact]
-        [UseReporter(typeof(VisualStudioReporter), typeof(XUnit2Reporter))]
         public void CompareAgainstGoldenMaster()
         {
             GenerateStubs(testDataDirectory);
