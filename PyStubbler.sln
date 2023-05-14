@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1441E43E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCSharpLibrary", "ExampleCSharpLibrary\ExampleCSharpLibrary.csproj", "{5F531B85-5B15-401E-974E-A2AB50987B15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PyStubbler.Tests", "PyStubbler.Tests\PyStubbler.Tests.csproj", "{548DEF93-40B8-4D84-AECE-EA5CA587231E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{5F531B85-5B15-401E-974E-A2AB50987B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F531B85-5B15-401E-974E-A2AB50987B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F531B85-5B15-401E-974E-A2AB50987B15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{548DEF93-40B8-4D84-AECE-EA5CA587231E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548DEF93-40B8-4D84-AECE-EA5CA587231E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548DEF93-40B8-4D84-AECE-EA5CA587231E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548DEF93-40B8-4D84-AECE-EA5CA587231E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F531B85-5B15-401E-974E-A2AB50987B15} = {1441E43E-7CBD-4DC8-9BB4-D4D08742D2F5}
+		{548DEF93-40B8-4D84-AECE-EA5CA587231E} = {1441E43E-7CBD-4DC8-9BB4-D4D08742D2F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38D676D5-879F-41B2-B69D-1B3006E3E357}
