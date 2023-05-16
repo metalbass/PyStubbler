@@ -82,6 +82,17 @@ namespace PyStubbler.Tests
             this.actualFilePath = actualFilePath;
             this.expectedFilePath = expectedFilePath;
 
+            if (!File.Exists(expectedFilePath))
+            {
+                string directorypath = Path.GetDirectoryName(expectedFilePath)!;
+                if (!Directory.Exists(directorypath))
+                {
+                    Directory.CreateDirectory(directorypath);
+                }
+
+                File.Create(expectedFilePath).Close();
+            }
+
             if (!File.Exists(actualFilePath))
             {
                 throw new("Existing File is required: '" + actualFilePath + "'");
