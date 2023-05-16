@@ -31,17 +31,13 @@ namespace PyStubbler.Tests
         {
             GenerateStubs(testDataDirectory);
 
-            if (ListStubFilePaths(testDataDirectory).Count() > 1)
+            foreach (string actualFilePath in ListStubFilePaths(testDataDirectory))
             {
-                Assert.Fail("We are not yet prepared to handle multiple files.");
+                string relativePath = Path.GetRelativePath(testDataDirectory, actualFilePath);
+                string expectedFilePath = Path.Join(goldenMasterDirectory, relativePath);
+
+                Approvals.Verify(new FileApprovalWriter(expectedFilePath, actualFilePath));
             }
-
-            string relativePath = Path.Join("ExampleCSharpLibrary", "ExampleCSharpLibrary", "__init__.pyi");
-
-            string expectedFilePath = Path.Join(goldenMasterDirectory, relativePath);
-            string actualFilePath = Path.Join(testDataDirectory, relativePath);
-
-            Approvals.Verify(new FileApprovalWriter(expectedFilePath, actualFilePath));
         }
 
         [Fact]
