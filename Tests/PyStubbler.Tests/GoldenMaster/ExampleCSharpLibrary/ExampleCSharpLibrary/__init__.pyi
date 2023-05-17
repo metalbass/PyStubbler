@@ -12,6 +12,10 @@ class DictionaryParameters:
     def ReturnDictionary(self) -> Dictionary: ...
 
 
+class EmptyClass:
+    pass
+
+
 class ListParameters:
     def __init__(self, param: List): ...
     def Method(self, param: List) -> None: ...
