@@ -1,6 +1,6 @@
 ﻿namespace ExampleCSharpLibrary
 {
-    public class ObsoleteSymbols
+    public class NonObsoleteClass
     {
         public string NonObsoleteProperty => "";
         public void NonObsoleteMethod() { }
@@ -13,4 +13,7 @@
         [Obsolete]
         public static void ObsoleteStaticMethod() { }
     }
+
+    [Obsolete]
+    public class ObsoleteClass { }
 }
