@@ -74,6 +74,13 @@ class PublicClass:
     def __init__(self): ...
 
 
+class PublicEnum:
+    #None = 0
+    One = 1
+    Two = 2
+    Three = 3
+
+
 class SingleVsFloatParameters:
     def __init__(self, param: Single): ...
     def Method(self, param: Single) -> None: ...
