@@ -27,12 +27,6 @@ namespace PyStubbler.Tests
         }
 
         [Fact]
-        public void TryFailingPublishing()
-        {
-            Assert.Fail("This should fail the action before we publish this version");
-        }
-
-        [Fact]
         public void CompareAgainstGoldenMaster()
         {
             GenerateStubs(testDataDirectory);
