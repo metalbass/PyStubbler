@@ -18,9 +18,8 @@ jobs:
           dotnet-version: 6.0.x
       - name: Test
         run: |
-          dotnet restore
           dotnet build
-          dotnet test --verbosity normal
+          dotnet test --no-restore --verbosity normal
       - name: Build
         shell: bash
         run: |
