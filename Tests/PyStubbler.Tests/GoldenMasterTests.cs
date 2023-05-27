@@ -50,9 +50,8 @@ namespace PyStubbler.Tests
         public void GeneratedStubFiles()
         {
             GenerateStubs(testDataDirectory);
-
             Approvals.VerifyAll("Generated stub files", ListStubFilePaths(testDataDirectory),
-                formatter: absolutePath => Path.GetRelativePath(testDataDirectory, absolutePath));
+                formatter: absolutePath => Path.GetRelativePath(testDataDirectory, absolutePath).Replace("\\", "/"));
         }
 
         private static void GenerateStubs(string destinationFolder)
