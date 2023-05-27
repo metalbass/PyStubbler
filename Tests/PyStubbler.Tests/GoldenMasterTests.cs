@@ -64,7 +64,8 @@ namespace PyStubbler.Tests
 
         private static IEnumerable<string> ListStubFilePaths(string directory)
         {
-            return Directory.EnumerateFiles(directory, "*.pyi", SearchOption.AllDirectories);
+            return Directory.EnumerateFiles(directory, "*.pyi", SearchOption.AllDirectories)
+                .OrderBy(path => path);
         }
 
         /// <remarks>
