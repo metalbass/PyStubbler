@@ -13,36 +13,32 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
-
       - name: Build
+        run: dotnet build
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+      - name: Publish
         shell: bash
         run: |
           tag=$(git describe --tags --abbrev=0)
 
           # Build everything
           dotnet restore
-          dotnet publish -r win-x64 --sc -c Release -o "build/win/48" -f net48 -p:PublishSingleFile=false
           dotnet publish -r win-x64 --sc -c Release -o "build/win/net6" -f net6
           dotnet publish -r linux-x64 --sc -c Release -o "build/nix/" -f net6
           dotnet publish -r osx-x64 --sc -c Release -o "build/osx/" -f net6
 
-          # Zip up windows files
-          cd build/win/48
-          7z a PyStubbler-$tag-win64.zip *
-          cd -
-
           # Move files to same dir
           mkdir dist
-          mv ./build/win/48/PyStubbler-$tag-win64.zip dist/PyStubbler-$tag-win64.zip
           mv ./build/win/net6/PyStubbler.exe dist/PyStubblerCore-$tag-win64.exe
           mv ./build/nix/PyStubbler dist/PyStubblerCore-$tag-linux64
           mv ./build/osx/PyStubbler dist/PyStubblerCore-$tag-osx64
 
           rm -rf build
-      - name: Publish
+      - name: Release
         uses: softprops/action-gh-release@v1
         with:
           files: "dist/PyStubbler*"

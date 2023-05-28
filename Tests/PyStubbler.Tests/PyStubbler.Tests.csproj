@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<WarningsAsErrors>Nullable</WarningsAsErrors>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Content Include="GoldenMaster\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ApprovalTests" Version="5.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.2.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PyStubbler\PyStubbler.csproj" />
+    <ProjectReference Include="..\ExampleCSharpLibrary\ExampleCSharpLibrary.csproj" />
+  </ItemGroup>
+
+</Project>
