@@ -137,7 +137,7 @@ namespace PyStubbler
                 }
                 sb.AppendLine("]");
             }
-            sb.AppendLine("from typing import Tuple, Set, Iterable, List");
+            sb.AppendLine("from typing import Tuple, Set, Iterable, List, overload");
 
             foreach (var stubType in stubTypes)
             {
@@ -233,6 +233,10 @@ namespace PyStubbler
                         else if (p.ParameterType.IsByRef)
                             refParamCount++;
                     }
+
+                    if (method.IsStatic)
+                        sb.AppendLine("    @staticmethod");
+
                     int parameterCount = parameters.Length - outParamCount;
 
                     if (method.IsSpecialName && (method.Name.StartsWith("get_") || method.Name.StartsWith("set_")))
@@ -343,7 +347,7 @@ namespace PyStubbler
 
             if (rc.Equals("String"))
                 return "str";
-            if (rc.Equals("Double"))
+            if (rc.Equals("Single") || rc.Equals("Double"))
                 return "float";
             if (rc.Equals("Boolean"))
                 return "bool";
